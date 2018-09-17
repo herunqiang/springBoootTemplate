@@ -1,0 +1,8 @@
+1.在使用热部署工具时，因为类加载器不同的原因导致shiro从主体获取的用户信息不能强制类型转换
+    原因：在启动项目是时候使用的类加载器是org.springframework.boot.devtools.restart.classloader.RestartClassLoader，
+        而从shiro session取对象的时候使用的类加载器是sun.misc.Launcher.AppClassLoader从而导致类型转换异常
+    解决方法1：可以直接不使用热部署工具，虽然可以解决这个问题，但是这样一来会严重的影响开发效率。
+    解决方法2：在resources目录下添加了一个目录META-INF,并在此目录下面添加了一个spring-devtools.properties属性配置文件，这样能有效的解决问题
+2.在application.yml配置文件中添加的配置属性不用单独的使用配置类了,在此文件中添加了相应的配置就spring boot 会自动的配置.
+3.在整合mybatis时@Repository注解的使用只是为了避免工具报错(因为这里不写的话,在注入的mapper的时候工具会报错,看着很不舒服,总感觉配置有错,但是不影响运行效果),
+  在spring boot + mybatis  容器中的是@Mapper项目中真正将mapper添加到spring
