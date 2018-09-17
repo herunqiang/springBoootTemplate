@@ -12,7 +12,8 @@ File Encoding         : 65001
 
 Date: 2018-09-17 15:05:34
 */
-
+CREATE database template;
+use template;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
