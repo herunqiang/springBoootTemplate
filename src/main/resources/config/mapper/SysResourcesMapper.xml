@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.template.mapper.SysResourcesMapper">
+  <resultMap id="BaseResultMap" type="com.example.template.common.entity.SysResources">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="res_url" jdbcType="VARCHAR" property="resUrl" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="user_sort" jdbcType="INTEGER" property="userSort" />
+  </resultMap>
+</mapper>

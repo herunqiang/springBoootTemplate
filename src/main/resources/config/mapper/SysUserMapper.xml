@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.template.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.example.template.common.entity.SysUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
+    <result column="user_enable" jdbcType="INTEGER" property="userEnable" />
+  </resultMap>
+
+  
+  <select id="selectOfCustom" resultMap="BaseResultMap">
+      SELECT * FROM  sys_user;
+  </select>
+</mapper>
