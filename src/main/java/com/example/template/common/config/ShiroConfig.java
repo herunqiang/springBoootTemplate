@@ -64,7 +64,7 @@ public class ShiroConfig {
         // 自定义缓存实现 使用redis
         securityManager.setCacheManager(cacheManager());
         // 自定义session管理 使用redis
-        securityManager.setSessionManager(sessionManager());
+//        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 

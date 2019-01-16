@@ -2,15 +2,19 @@ package com.example.template.common.config;
 
 import com.example.template.common.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.util.Arrays;
 
 @Configuration
 @PropertySource("classpath:config/redis.properties")
@@ -97,18 +101,20 @@ public class RedisConfig {
      */
     @Bean
     public JedisConnectionFactory JedisConnectionFactory(JedisPoolConfig jedisPoolConfig) {
-        JedisConnectionFactory JedisConnectionFactory = new JedisConnectionFactory(jedisPoolConfig);
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(jedisPoolConfig);
         //连接池
-        JedisConnectionFactory.setPoolConfig(jedisPoolConfig);
+        jedisConnectionFactory.setPoolConfig(jedisPoolConfig);
         //IP地址
-        JedisConnectionFactory.setHostName(ip);
+        jedisConnectionFactory.setHostName(ip);
         //端口号
-        JedisConnectionFactory.setPort(port);
+        jedisConnectionFactory.setPort(port);
         //如果Redis设置有密码
-        //JedisConnectionFactory.setPassword(password);
+        //jedisConnectionFactory.setPassword(password);
         //客户端超时时间单位是毫秒
-        JedisConnectionFactory.setTimeout(timeout);
-        return JedisConnectionFactory;
+        jedisConnectionFactory.setTimeout(timeout);
+        //设置链接db
+        jedisConnectionFactory.setDatabase(1);
+        return jedisConnectionFactory;
     }
 
     /**
@@ -155,4 +161,5 @@ public class RedisConfig {
         redisUtil.setRedisTemplate(redisTemplate);
         return redisUtil;
     }
+
 }
