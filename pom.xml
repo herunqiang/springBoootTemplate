@@ -81,11 +81,11 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 		<!-- SpringBoot - MyBatis 逆向工程 -->
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.mybatis.generator</groupId>
 			<artifactId>mybatis-generator-core</artifactId>
 			<version>1.3.2</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- MyBatis 通用 Mapper -->
 		<dependency>
@@ -136,15 +136,34 @@
 		     <artifactId>pagehelper</artifactId>
 		     <version>4.1.6</version>
 		</dependency>
+		<!--hutool 工具类库-->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>4.1.19</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!--maven插件-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+				</configuration>
+				<!-- mvn spring-boot:repackage -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
+			<!--&lt;!&ndash;逆向工程&ndash;&gt;
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -152,7 +171,7 @@
 				<configuration>
 					<configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
 					<verbose>true</verbose>
-					<overwrite>true</overwrite>
+					<overwrite>false</overwrite>
 				</configuration>
 				<executions>
 					<execution>
@@ -176,7 +195,7 @@
 
 				</dependencies>
 
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
